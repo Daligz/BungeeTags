@@ -1,12 +1,23 @@
 package net.royalmind.minecraft.plugin.bungeeprefix;
 
+import com.google.gson.Gson;
+import lombok.Getter;
+import lombok.SneakyThrows;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.royalmind.minecraft.plugin.bungeeprefix.files.Configuration;
 
 public final class BungeePrefix extends Plugin {
 
+    @Getter
+    private final Gson gson = new Gson();
+
+    private Configuration configuration;
+
     @Override
+    @SneakyThrows
     public void onEnable() {
         // Plugin startup logic
+        this.configuration = new Configuration(this.gson, this);
     }
 
     @Override
