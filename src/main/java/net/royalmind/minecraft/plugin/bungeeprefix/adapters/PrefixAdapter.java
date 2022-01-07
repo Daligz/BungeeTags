@@ -1,20 +1,20 @@
 package net.royalmind.minecraft.plugin.bungeeprefix.adapters;
 
 import com.google.gson.*;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.PrefixUser;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.User;
+import net.royalmind.minecraft.plugin.bungeeprefix.common.PrefixData;
+import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
 
 import java.lang.reflect.Type;
 
-public class UserAdapter implements JsonDeserializer<User>, JsonSerializer<User> {
+public class PrefixAdapter implements JsonDeserializer<Prefix>, JsonSerializer<Prefix> {
 
     public static final String PREFIX = "Prefix", PERMISSION = "Permission", REQUIRED_PERMISSION = "RequiredPermission";
 
     @Override
-    public User deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException {
+    public Prefix deserialize(final JsonElement json, final Type typeOfT, final JsonDeserializationContext context) throws JsonParseException {
         if (json == null || !(json.isJsonObject())) return null;
         final JsonObject jsonObject = json.getAsJsonObject();
-        return new PrefixUser(
+        return new PrefixData(
                 null,
                 jsonObject.get(PREFIX).getAsString(),
                 jsonObject.get(PERMISSION).getAsString(),
@@ -23,7 +23,7 @@ public class UserAdapter implements JsonDeserializer<User>, JsonSerializer<User>
     }
 
     @Override
-    public JsonElement serialize(final User src, final Type typeOfSrc, final JsonSerializationContext context) {
+    public JsonElement serialize(final Prefix src, final Type typeOfSrc, final JsonSerializationContext context) {
         if (src == null) return null;
         final JsonObject jsonObject = new JsonObject();
         jsonObject.addProperty(PREFIX, src.getPrefix());

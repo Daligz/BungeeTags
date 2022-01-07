@@ -5,16 +5,17 @@ import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.royalmind.minecraft.plugin.bungeeprefix.adapters.UserAdapter;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.User;
+import net.royalmind.minecraft.plugin.bungeeprefix.adapters.PrefixAdapter;
+import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
 import net.royalmind.minecraft.plugin.bungeeprefix.files.Configuration;
 
 public final class BungeePrefix extends Plugin {
 
     @Getter
     private final Gson gson = new GsonBuilder()
-            .registerTypeHierarchyAdapter(User.class, new UserAdapter())
+            .registerTypeHierarchyAdapter(Prefix.class, new PrefixAdapter())
             .setPrettyPrinting()
+            .serializeNulls()
             .create();
 
     private Configuration configuration;

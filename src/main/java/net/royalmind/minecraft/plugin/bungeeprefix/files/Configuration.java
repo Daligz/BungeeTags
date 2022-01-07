@@ -2,9 +2,9 @@ package net.royalmind.minecraft.plugin.bungeeprefix.files;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
+import com.google.gson.JsonElement;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.royalmind.minecraft.plugin.bungeeprefix.adapters.UserAdapter;
+import net.royalmind.minecraft.plugin.bungeeprefix.common.PrefixData;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,12 +42,15 @@ public class Configuration {
     }
 
     private JsonArray getDefaultJson() {
-        final JsonObject values = new JsonObject();
-        values.addProperty(UserAdapter.PREFIX, "&9[TESTER]");
-        values.addProperty(UserAdapter.PERMISSION, "prefix.tester");
-        values.addProperty(UserAdapter.REQUIRED_PERMISSION, "prefix.required.vip");
+        final JsonElement userJsonElement = this.gson.toJsonTree(
+                new PrefixData(
+                        "&9[TESTER]",
+                        "prefix.tester",
+                        "prefix.required.vip"
+                )
+        );
         final JsonArray jsonElements = new JsonArray();
-        jsonElements.add(values);
+        jsonElements.add(userJsonElement);
         return jsonElements;
     }
 }
