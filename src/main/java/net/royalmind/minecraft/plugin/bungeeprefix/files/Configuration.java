@@ -9,31 +9,30 @@ import net.royalmind.minecraft.plugin.bungeeprefix.adapters.PrefixAdapter;
 import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
 import net.royalmind.minecraft.plugin.bungeeprefix.common.PrefixData;
 
-import java.io.File;
 import java.util.ArrayList;
 
 public class Configuration {
 
     private final Gson gson;
     private final Plugin plugin;
+    private final String prefixFile;
 
     private final static String PREFIX_FILE_NAME = "Prefix";
 
     public Configuration(final Gson gson, final Plugin plugin) {
         this.gson = gson;
         this.plugin = plugin;
+        this.prefixFile = FileUtils.toServerFile(
+                this.plugin.getDataFolder(), PREFIX_FILE_NAME, ".json"
+        );
         this.load();
     }
 
     public void load() {
-        final File dataFolder = this.plugin.getDataFolder();
-        final String prefixFile = FileUtils.toServerFile(
-                dataFolder, PREFIX_FILE_NAME, ".json"
-        );
         final Object obj = this.getPrefixFile();
         if (obj == null) {
             FileUtils.saveFile(
-                    prefixFile,
+                    this.prefixFile,
                     getDefaultJson(),
                     this.gson
             );
@@ -52,12 +51,8 @@ public class Configuration {
     }
 
     private Object getPrefixFile() {
-        final File dataFolder = this.plugin.getDataFolder();
-        final String prefixFile = FileUtils.toServerFile(
-                dataFolder, PREFIX_FILE_NAME, ".json"
-        );
         return FileUtils.loadFile(
-                prefixFile,
+                this.prefixFile,
                 new ArrayList<Prefix>(),
                 this.gson
         );
