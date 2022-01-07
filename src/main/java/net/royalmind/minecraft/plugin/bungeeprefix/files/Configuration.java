@@ -3,7 +3,10 @@ package net.royalmind.minecraft.plugin.bungeeprefix.files;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.internal.LinkedTreeMap;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.royalmind.minecraft.plugin.bungeeprefix.adapters.PrefixAdapter;
+import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
 import net.royalmind.minecraft.plugin.bungeeprefix.common.PrefixData;
 
 import java.io.File;
@@ -27,11 +30,7 @@ public class Configuration {
         final String prefixFile = FileUtils.toServerFile(
                 dataFolder, PREFIX_FILE_NAME, ".json"
         );
-        final Object obj = FileUtils.loadFile(
-                prefixFile,
-                new ArrayList<String>(),
-                this.gson
-        );
+        final Object obj = this.getPrefixFile();
         if (obj == null) {
             FileUtils.saveFile(
                     prefixFile,
@@ -39,6 +38,29 @@ public class Configuration {
                     this.gson
             );
         }
+    }
+
+    public ArrayList<Prefix> getPrefixes() {
+        final ArrayList<LinkedTreeMap<Object, Object>> prefixTree = (ArrayList<LinkedTreeMap<Object, Object>>) getPrefixFile();
+        final ArrayList<Prefix> prefixes = new ArrayList<>();
+        prefixTree.forEach(treeMap -> prefixes.add(new PrefixData(
+                treeMap.get(PrefixAdapter.PREFIX).toString(),
+                treeMap.get(PrefixAdapter.PERMISSION).toString(),
+                treeMap.get(PrefixAdapter.REQUIRED_PERMISSION).toString()
+        )));
+        return prefixes;
+    }
+
+    private Object getPrefixFile() {
+        final File dataFolder = this.plugin.getDataFolder();
+        final String prefixFile = FileUtils.toServerFile(
+                dataFolder, PREFIX_FILE_NAME, ".json"
+        );
+        return FileUtils.loadFile(
+                prefixFile,
+                new ArrayList<Prefix>(),
+                this.gson
+        );
     }
 
     private JsonArray getDefaultJson() {

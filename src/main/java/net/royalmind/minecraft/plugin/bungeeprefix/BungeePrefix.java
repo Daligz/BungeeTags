@@ -9,6 +9,9 @@ import net.royalmind.minecraft.plugin.bungeeprefix.adapters.PrefixAdapter;
 import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
 import net.royalmind.minecraft.plugin.bungeeprefix.files.Configuration;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class BungeePrefix extends Plugin {
 
     @Getter
@@ -18,6 +21,7 @@ public final class BungeePrefix extends Plugin {
             .serializeNulls()
             .create();
 
+    private final List<Prefix> prefixes = new ArrayList<>();
     private Configuration configuration;
 
     @Override
@@ -26,6 +30,7 @@ public final class BungeePrefix extends Plugin {
         // Plugin startup logic
         this.loadFolder();
         this.configuration = new Configuration(this.gson, this);
+        this.prefixes.addAll(this.configuration.getPrefixes());
     }
 
     @Override
