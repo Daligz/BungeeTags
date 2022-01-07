@@ -15,7 +15,6 @@ public class PrefixAdapter implements JsonDeserializer<Prefix>, JsonSerializer<P
         if (json == null || !(json.isJsonObject())) return null;
         final JsonObject jsonObject = json.getAsJsonObject();
         return new PrefixData(
-                null,
                 jsonObject.get(PREFIX).getAsString(),
                 jsonObject.get(PERMISSION).getAsString(),
                 jsonObject.get(REQUIRED_PERMISSION).getAsString()
