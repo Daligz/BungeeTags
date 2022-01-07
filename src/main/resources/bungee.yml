@@ -1,4 +1,5 @@
 name: BungeePrefix
 version: '${project.version}'
 main: net.royalmind.minecraft.plugin.bungeeprefix.BungeePrefix
+author: ImSrPanda
 description: Create prefixes from bungeecord

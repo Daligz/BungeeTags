@@ -17,11 +17,16 @@ public final class BungeePrefix extends Plugin {
     @SneakyThrows
     public void onEnable() {
         // Plugin startup logic
+        this.loadFolder();
         this.configuration = new Configuration(this.gson, this);
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    private void loadFolder() {
+        this.getLogger().info((this.getDataFolder().mkdirs()) ? "Main folder created!" : "Main folder exists!");
     }
 }

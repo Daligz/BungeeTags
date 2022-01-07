@@ -16,8 +16,12 @@ public class FileUtils {
         }
     }
 
-    public Object loadFile(final String file, final Object object, final Gson gson) throws FileNotFoundException {
-        return gson.fromJson(new FileReader(file), object.getClass());
+    public Object loadFile(final String file, final Object object, final Gson gson) {
+        Object obj = null;
+        try {
+            obj = gson.fromJson(new FileReader(file), object.getClass());
+        } catch (final FileNotFoundException ignored) { }
+        return obj;
     }
 
     public String toServerFile(final File dataFolder, final String fileName, final String extension) {
