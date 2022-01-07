@@ -1,11 +1,12 @@
 package net.royalmind.minecraft.plugin.bungeeprefix.files;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import net.md_5.bungee.api.plugin.Plugin;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Configuration {
 
@@ -33,12 +34,19 @@ public class Configuration {
         if (obj == null) {
             FileUtils.saveFile(
                     prefixFile,
-                    Arrays.asList("&7[TESTER]", "&c[MX]"),
+                    getDefaultJson(),
                     this.gson
             );
-            return;
         }
-        final ArrayList<String> array = (ArrayList<String>) obj;
-        array.forEach(s -> this.plugin.getLogger().info("element: " + s));
+    }
+
+    private JsonArray getDefaultJson() {
+        final JsonObject values = new JsonObject();
+        values.addProperty("Prefix", "&9[TESTER]");
+        values.addProperty("Permission", "prefix.tester");
+        values.addProperty("RequiredPermission", "prefix.required.vip");
+        final JsonArray jsonElements = new JsonArray();
+        jsonElements.add(values);
+        return jsonElements;
     }
 }

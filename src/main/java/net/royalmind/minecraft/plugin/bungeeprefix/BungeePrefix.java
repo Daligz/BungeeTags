@@ -1,6 +1,7 @@
 package net.royalmind.minecraft.plugin.bungeeprefix;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -9,7 +10,9 @@ import net.royalmind.minecraft.plugin.bungeeprefix.files.Configuration;
 public final class BungeePrefix extends Plugin {
 
     @Getter
-    private final Gson gson = new Gson();
+    private final Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .create();
 
     private Configuration configuration;
 
