@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import net.md_5.bungee.api.plugin.Plugin;
+import net.royalmind.minecraft.plugin.bungeeprefix.adapters.UserAdapter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -42,9 +43,9 @@ public class Configuration {
 
     private JsonArray getDefaultJson() {
         final JsonObject values = new JsonObject();
-        values.addProperty("Prefix", "&9[TESTER]");
-        values.addProperty("Permission", "prefix.tester");
-        values.addProperty("RequiredPermission", "prefix.required.vip");
+        values.addProperty(UserAdapter.PREFIX, "&9[TESTER]");
+        values.addProperty(UserAdapter.PERMISSION, "prefix.tester");
+        values.addProperty(UserAdapter.REQUIRED_PERMISSION, "prefix.required.vip");
         final JsonArray jsonElements = new JsonArray();
         jsonElements.add(values);
         return jsonElements;
