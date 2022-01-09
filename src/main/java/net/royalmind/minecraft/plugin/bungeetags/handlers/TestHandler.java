@@ -1,4 +1,4 @@
-package net.royalmind.minecraft.plugin.bungeeprefix.handlers;
+package net.royalmind.minecraft.plugin.bungeetags.handlers;
 
 import lombok.AllArgsConstructor;
 import net.md_5.bungee.api.ChatColor;
@@ -8,7 +8,7 @@ import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.event.ChatEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
-import net.royalmind.minecraft.plugin.bungeeprefix.managers.PermissionManager;
+import net.royalmind.minecraft.plugin.bungeetags.managers.PermissionManager;
 
 @AllArgsConstructor
 public class TestHandler implements Listener {

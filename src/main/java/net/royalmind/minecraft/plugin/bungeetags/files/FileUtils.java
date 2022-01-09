@@ -1,4 +1,4 @@
-package net.royalmind.minecraft.plugin.bungeeprefix.files;
+package net.royalmind.minecraft.plugin.bungeetags.files;
 
 import com.google.gson.Gson;
 import lombok.experimental.UtilityClass;

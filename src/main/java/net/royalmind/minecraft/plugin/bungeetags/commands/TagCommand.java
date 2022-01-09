@@ -1,4 +1,4 @@
-package net.royalmind.minecraft.plugin.bungeeprefix.commands;
+package net.royalmind.minecraft.plugin.bungeetags.commands;
 
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -6,8 +6,8 @@ import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.TabExecutor;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
-import net.royalmind.minecraft.plugin.bungeeprefix.managers.PermissionManager;
+import net.royalmind.minecraft.plugin.bungeetags.common.Prefix;
+import net.royalmind.minecraft.plugin.bungeetags.managers.PermissionManager;
 
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;

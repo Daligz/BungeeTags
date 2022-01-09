@@ -5,13 +5,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>net.royalmind.minecraft.plugin</groupId>
-    <artifactId>BungeePrefix</artifactId>
+    <artifactId>BungeeTags</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
-    <name>BungeePrefix</name>
+    <name>BungeeTags</name>
 
-    <description>Create prefixes from bungeecord</description>
+    <description>Create tags from bungeecord</description>
     <properties>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

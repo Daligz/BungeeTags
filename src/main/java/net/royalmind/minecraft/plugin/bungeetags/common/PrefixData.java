@@ -1,4 +1,4 @@
-package net.royalmind.minecraft.plugin.bungeeprefix.common;
+package net.royalmind.minecraft.plugin.bungeetags.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

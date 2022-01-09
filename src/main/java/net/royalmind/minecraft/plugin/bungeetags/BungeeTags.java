@@ -1,4 +1,4 @@
-package net.royalmind.minecraft.plugin.bungeeprefix;
+package net.royalmind.minecraft.plugin.bungeetags;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,17 +8,17 @@ import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
 import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.royalmind.minecraft.plugin.bungeeprefix.adapters.PrefixAdapter;
-import net.royalmind.minecraft.plugin.bungeeprefix.commands.TagCommand;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
-import net.royalmind.minecraft.plugin.bungeeprefix.files.Configuration;
-import net.royalmind.minecraft.plugin.bungeeprefix.handlers.TestHandler;
-import net.royalmind.minecraft.plugin.bungeeprefix.managers.PermissionManager;
+import net.royalmind.minecraft.plugin.bungeetags.adapters.PrefixAdapter;
+import net.royalmind.minecraft.plugin.bungeetags.commands.TagCommand;
+import net.royalmind.minecraft.plugin.bungeetags.common.Prefix;
+import net.royalmind.minecraft.plugin.bungeetags.files.Configuration;
+import net.royalmind.minecraft.plugin.bungeetags.handlers.TestHandler;
+import net.royalmind.minecraft.plugin.bungeetags.managers.PermissionManager;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public final class BungeePrefix extends Plugin {
+public final class BungeeTags extends Plugin {
 
     @Getter
     private final Gson gson = new GsonBuilder()

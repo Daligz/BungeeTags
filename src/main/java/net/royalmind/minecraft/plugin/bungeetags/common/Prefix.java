@@ -1,4 +1,4 @@
-package net.royalmind.minecraft.plugin.bungeeprefix.common;
+package net.royalmind.minecraft.plugin.bungeetags.common;
 
 public interface Prefix {
     String getName();

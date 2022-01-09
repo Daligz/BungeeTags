@@ -1,8 +1,8 @@
-package net.royalmind.minecraft.plugin.bungeeprefix.adapters;
+package net.royalmind.minecraft.plugin.bungeetags.adapters;
 
 import com.google.gson.*;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.PrefixData;
+import net.royalmind.minecraft.plugin.bungeetags.common.Prefix;
+import net.royalmind.minecraft.plugin.bungeetags.common.PrefixData;
 
 import java.lang.reflect.Type;
 

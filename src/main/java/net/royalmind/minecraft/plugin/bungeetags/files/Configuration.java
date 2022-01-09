@@ -1,13 +1,13 @@
-package net.royalmind.minecraft.plugin.bungeeprefix.files;
+package net.royalmind.minecraft.plugin.bungeetags.files;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.internal.LinkedTreeMap;
 import net.md_5.bungee.api.plugin.Plugin;
-import net.royalmind.minecraft.plugin.bungeeprefix.adapters.PrefixAdapter;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.PrefixData;
+import net.royalmind.minecraft.plugin.bungeetags.adapters.PrefixAdapter;
+import net.royalmind.minecraft.plugin.bungeetags.common.Prefix;
+import net.royalmind.minecraft.plugin.bungeetags.common.PrefixData;
 
 import java.util.ArrayList;
 

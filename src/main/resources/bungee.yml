@@ -1,6 +1,6 @@
-name: BungeePrefix
+name: BungeeTags
 version: '${project.version}'
-main: net.royalmind.minecraft.plugin.bungeeprefix.BungeePrefix
+main: net.royalmind.minecraft.plugin.bungeetags.BungeeTags
 author: ImSrPanda
 depends: [LuckPerms]
-description: Create prefixes from bungeecord
+description: Create tags from bungeecord

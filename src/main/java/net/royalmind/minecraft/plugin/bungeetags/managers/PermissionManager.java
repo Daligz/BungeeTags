@@ -1,4 +1,4 @@
-package net.royalmind.minecraft.plugin.bungeeprefix.managers;
+package net.royalmind.minecraft.plugin.bungeetags.managers;
 
 import lombok.AllArgsConstructor;
 import net.luckperms.api.LuckPerms;
@@ -6,8 +6,8 @@ import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.types.MetaNode;
 import net.md_5.bungee.api.Callback;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
-import net.royalmind.minecraft.plugin.bungeeprefix.common.PrefixData;
+import net.royalmind.minecraft.plugin.bungeetags.common.Prefix;
+import net.royalmind.minecraft.plugin.bungeetags.common.PrefixData;
 
 import java.util.concurrent.CompletableFuture;
 
