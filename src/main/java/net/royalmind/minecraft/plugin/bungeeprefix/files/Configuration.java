@@ -43,6 +43,7 @@ public class Configuration {
         final ArrayList<LinkedTreeMap<Object, Object>> prefixTree = (ArrayList<LinkedTreeMap<Object, Object>>) getPrefixFile();
         final ArrayList<Prefix> prefixes = new ArrayList<>();
         prefixTree.forEach(treeMap -> prefixes.add(new PrefixData(
+                treeMap.get(PrefixAdapter.NAME).toString(),
                 treeMap.get(PrefixAdapter.PREFIX).toString(),
                 treeMap.get(PrefixAdapter.PERMISSION).toString(),
                 treeMap.get(PrefixAdapter.REQUIRED_PERMISSION).toString()
@@ -61,6 +62,7 @@ public class Configuration {
     private JsonArray getDefaultJson() {
         final JsonElement userJsonElement = this.gson.toJsonTree(
                 new PrefixData(
+                        "Tester",
                         "&9[TESTER]",
                         "prefix.tester",
                         "prefix.required.vip"

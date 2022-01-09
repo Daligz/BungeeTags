@@ -25,7 +25,7 @@ public class PermissionManager {
         return this.saveUser(match, user);
     }
 
-    public boolean delPrefix(final ProxiedPlayer proxiedPlayer, final Prefix prefix) {
+    public boolean delPrefix(final ProxiedPlayer proxiedPlayer) {
         final User user = this.luckPerms.getPlayerAdapter(ProxiedPlayer.class).getUser(proxiedPlayer);
         final boolean match = this.matchNode(user, (result, error) -> user.data().remove(result));
         return this.saveUser(match, user);

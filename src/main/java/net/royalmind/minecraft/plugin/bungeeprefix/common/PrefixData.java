@@ -7,5 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class PrefixData implements Prefix {
     public static final String PREFIX_KEY = PrefixData.class.getSimpleName();
-    private String prefix, permission, requiredPermission;
+    private String name, prefix, permission, requiredPermission;
 }
