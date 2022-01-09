@@ -17,24 +17,23 @@ public class PermissionManager {
     private final LuckPerms luckPerms;
 
     public boolean setPrefix(final ProxiedPlayer proxiedPlayer, final Prefix prefix) {
-        final User user = this.getUser(proxiedPlayer);;
+        final User user = this.getUser(proxiedPlayer);
         if (!(proxiedPlayer.hasPermission(prefix.getRequiredPermission()))) return false;
         if (!(proxiedPlayer.hasPermission(prefix.getPermission()))) return false;
-        final boolean match = this.matchNode(user, (result, error) -> {
-            if (result == null) return;
-            user.data().remove(result);
+        return this.matchNode(user, (result, error) -> {
+            if (result != null) user.data().remove(result);
             user.data().add(MetaNode.builder(PrefixData.PREFIX_KEY, prefix.getPrefix()).build());
+            this.luckPerms.getUserManager().saveUser(user);
         });
-        return this.saveUser(match, user);
     }
 
     public boolean delPrefix(final ProxiedPlayer proxiedPlayer) {
         final User user = this.getUser(proxiedPlayer);
-        final boolean match = this.matchNode(user, (result, error) -> {
+        return this.matchNode(user, (result, error) -> {
             if (result == null) return;
             user.data().remove(result);
+            this.luckPerms.getUserManager().saveUser(user);
         });
-        return this.saveUser(match, user);
     }
 
     public CompletableFuture<String> getPlayerPrefix(final ProxiedPlayer proxiedPlayer) {
@@ -52,11 +51,6 @@ public class PermissionManager {
 
     private User getUser(final ProxiedPlayer proxiedPlayer) {
         return this.luckPerms.getPlayerAdapter(ProxiedPlayer.class).getUser(proxiedPlayer);
-    }
-
-    private boolean saveUser(final boolean match, final User user) {
-        if (match) this.luckPerms.getUserManager().saveUser(user);
-        return match;
     }
 
     private boolean matchNode(final User user, final Callback<MetaNode> callback) {

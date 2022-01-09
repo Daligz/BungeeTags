@@ -17,8 +17,9 @@ public class TestHandler implements Listener {
 
     @EventHandler
     public void onChat(final ChatEvent event) {
-        final ProxiedPlayer proxiedPlayer = (ProxiedPlayer) event.getSender();
         final String message = event.getMessage();
+        if (message.startsWith("/")) return;
+        final ProxiedPlayer proxiedPlayer = (ProxiedPlayer) event.getSender();
         event.setCancelled(true);
         this.permissionManager.getPlayerPrefix(proxiedPlayer).whenComplete((s, throwable) -> {
             if (s == null) {

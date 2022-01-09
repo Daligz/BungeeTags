@@ -41,11 +41,11 @@ public class TagCommand extends Command implements TabExecutor {
                 sender.sendMessage(new TextComponent(ChatColor.RED + "Invalid tag!"));
                 return;
             }
-            this.permissionManager.setPrefix(proxiedPlayer, prefix);
-            sender.sendMessage(new TextComponent(ChatColor.GREEN + "Prefix added!"));
+            final boolean ok = this.permissionManager.setPrefix(proxiedPlayer, prefix);
+            sender.sendMessage(new TextComponent(((ok) ? ChatColor.GREEN : ChatColor.RED) + "Prefix added!"));
         } else if (rootArg.equalsIgnoreCase("del")) {
-            this.permissionManager.delPrefix(proxiedPlayer);
-            sender.sendMessage(new TextComponent(ChatColor.GOLD + "Prefix deleted!"));
+            final boolean ok = this.permissionManager.delPrefix(proxiedPlayer);
+            sender.sendMessage(new TextComponent(((ok) ? ChatColor.GREEN : ChatColor.RED) + "Prefix deleted!"));
         } else {
             sender.sendMessage(new TextComponent(ChatColor.RED + "/tags [set/del] {tag name}"));
         }
