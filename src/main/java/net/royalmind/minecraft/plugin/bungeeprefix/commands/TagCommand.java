@@ -10,6 +10,7 @@ import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
 import net.royalmind.minecraft.plugin.bungeeprefix.managers.PermissionManager;
 
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 public class TagCommand extends Command implements TabExecutor {
 
@@ -41,11 +42,12 @@ public class TagCommand extends Command implements TabExecutor {
                 sender.sendMessage(new TextComponent(ChatColor.RED + "Invalid tag!"));
                 return;
             }
-            final boolean ok = this.permissionManager.setPrefix(proxiedPlayer, prefix);
-            sender.sendMessage(new TextComponent(((ok) ? ChatColor.GREEN : ChatColor.RED) + "Prefix added!"));
+            final CompletableFuture<Boolean> futureSet = this.permissionManager.setPrefix(proxiedPlayer, prefix);
+            futureSet.whenComplete((aBoolean, throwable) -> sender.sendMessage(new TextComponent(((aBoolean) ? ChatColor.GREEN : ChatColor.RED) + "Prefix added!")));
         } else if (rootArg.equalsIgnoreCase("del")) {
-            final boolean ok = this.permissionManager.delPrefix(proxiedPlayer);
-            sender.sendMessage(new TextComponent(((ok) ? ChatColor.GREEN : ChatColor.RED) + "Prefix deleted!"));
+            final CompletableFuture<Boolean> futureDel = this.permissionManager.delPrefix(proxiedPlayer);
+            futureDel.whenComplete((aBoolean, throwable) -> sender.sendMessage(new TextComponent(((aBoolean) ? ChatColor.GREEN : ChatColor.RED) + "Prefix deleted!")));
+
         } else {
             sender.sendMessage(new TextComponent(ChatColor.RED + "/tags [set/del] {tag name}"));
         }

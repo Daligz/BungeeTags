@@ -16,24 +16,33 @@ public class PermissionManager {
 
     private final LuckPerms luckPerms;
 
-    public boolean setPrefix(final ProxiedPlayer proxiedPlayer, final Prefix prefix) {
+    public CompletableFuture<Boolean> setPrefix(final ProxiedPlayer proxiedPlayer, final Prefix prefix) {
+        final CompletableFuture<Boolean> future = new CompletableFuture<>();
         final User user = this.getUser(proxiedPlayer);
-        if (!(proxiedPlayer.hasPermission(prefix.getRequiredPermission()))) return false;
-        if (!(proxiedPlayer.hasPermission(prefix.getPermission()))) return false;
-        return this.matchNode(user, (result, error) -> {
+        if (!(proxiedPlayer.hasPermission(prefix.getRequiredPermission()))) future.complete(false);
+        if (!(proxiedPlayer.hasPermission(prefix.getPermission()))) future.complete(false);
+        this.matchNode(user, (result, error) -> {
             if (result != null) user.data().remove(result);
             user.data().add(MetaNode.builder(PrefixData.PREFIX_KEY, prefix.getPrefix()).build());
             this.luckPerms.getUserManager().saveUser(user);
+            future.complete(true);
         });
+        return future;
     }
 
-    public boolean delPrefix(final ProxiedPlayer proxiedPlayer) {
+    public CompletableFuture<Boolean> delPrefix(final ProxiedPlayer proxiedPlayer) {
+        final CompletableFuture<Boolean> future = new CompletableFuture<>();
         final User user = this.getUser(proxiedPlayer);
-        return this.matchNode(user, (result, error) -> {
-            if (result == null) return;
+        this.matchNode(user, (result, error) -> {
+            if (result == null) {
+                future.complete(false);
+                return;
+            }
             user.data().remove(result);
             this.luckPerms.getUserManager().saveUser(user);
+            future.complete(true);
         });
+        return future;
     }
 
     public CompletableFuture<String> getPlayerPrefix(final ProxiedPlayer proxiedPlayer) {
