@@ -12,6 +12,7 @@ import net.royalmind.minecraft.plugin.bungeeprefix.adapters.PrefixAdapter;
 import net.royalmind.minecraft.plugin.bungeeprefix.commands.TagCommand;
 import net.royalmind.minecraft.plugin.bungeeprefix.common.Prefix;
 import net.royalmind.minecraft.plugin.bungeeprefix.files.Configuration;
+import net.royalmind.minecraft.plugin.bungeeprefix.handlers.TestHandler;
 import net.royalmind.minecraft.plugin.bungeeprefix.managers.PermissionManager;
 
 import java.util.HashMap;
@@ -40,6 +41,7 @@ public final class BungeePrefix extends Plugin {
         this.configuration = new Configuration(this.gson, this);
         this.loadPrefixes();
         this.loadCommands(new TagCommand("tags", permissionManager, prefixes));
+        this.getProxy().getPluginManager().registerListener(this, new TestHandler(this.permissionManager));
     }
 
     @Override
